@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;500;700&display=swap" rel="stylesheet">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"CleaningService","name":"AIA Cleaning Services Pty Ltd","telephone":"+61415241984","address":{"@type":"PostalAddress","streetAddress":"19 Green Valley Rd","addressLocality":"Green Valley","addressRegion":"NSW","postalCode":"2168","addressCountry":"AU"},"slogan":"Clean Spaces... Healthier Lives","areaServed":[],"priceRange":"$$"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CleaningService","name":"AIA Cleaning Services Pty Ltd","telephone":"+61415241984","email":"aia.cleaning.services.nsw@gmail.com","address":{"@type":"PostalAddress","streetAddress":"19 Green Valley Rd","addressLocality":"Green Valley","addressRegion":"NSW","postalCode":"2168","addressCountry":"AU"},"slogan":"Clean Spaces... Healthier Lives","areaServed":[],"priceRange":"$$"}</script>
 <style>
 :root{--navy:#0b2a5b;--royal:#1556c0;--sky:#e8f1fd;--accent:#7db6f5;--bg:#fff;--text:#1b2a41;--muted:#51627d;--card:#fff;--line:#d7e3f4;--safe-t:env(safe-area-inset-top,0px);--safe-b:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#081a38;--text:#e6eefb;--muted:#a9bad4;--card:#0f2447;--line:#21407a;--sky:#0d2147}}
@@ -198,7 +198,7 @@ dialog{max-width:520px;border:0;border-radius:20px;padding:28px;background:var(-
 <footer>
  <div class="wrap">
   <div class="fg">
-   <div><div class="logo" style="margin-bottom:10px"><span id="logoFoot"></span></div><p>Clean Spaces... Healthier Lives.</p><p><a href="tel:0415241984"><strong>0415 241 984</strong></a></p><p>19 Green Valley Rd<br>Green Valley NSW 2168</p></div>
+   <div><div class="logo" style="margin-bottom:10px"><span id="logoFoot"></span></div><p>Clean Spaces... Healthier Lives.</p><p><a href="tel:0415241984"><strong>0415 241 984</strong></a></p><p>19 Green Valley Rd<br>Green Valley NSW 2168<br><a href="mailto:aia.cleaning.services.nsw@gmail.com">aia.cleaning.services.nsw@gmail.com</a></p></div>
    <div><h3>Quick links</h3><ul><li><a href="#home">Home</a></li><li><a href="#about">About Us</a></li><li><a href="#services">Services</a></li><li><a href="#why">Why Choose Us</a></li><li><a href="#contact">Contact</a></li></ul></div>
    <div><h3>Services</h3><ul id="fSvc"></ul></div>
    <div><h3>Legal</h3><ul><li><a href="#" data-d="privacy">Privacy Policy</a></li><li><a href="#" data-d="terms">Terms and Conditions</a></li></ul></div>
@@ -216,7 +216,7 @@ dialog{max-width:520px;border:0;border-radius:20px;padding:28px;background:var(-
 var CONFIG={
  phone:"0415 241 984", phoneTel:"0415241984", whatsapp:"61415241984",
  notifyEmail:"aia.cleaning.services.nsw@gmail.com",           // EASIEST: the email that should receive enquiries (uses formsubmit.co, no signup). First enquiry sends a one-time activation email to this address.
- formEndpoint:"aia.cleaning.services.nsw@gmail.com",          // ADVANCED: your own Formspree / Web3Forms / backend POST URL (overrides notifyEmail).
+ formEndpoint:"",          // ADVANCED: your own Formspree / Web3Forms / backend POST URL (overrides notifyEmail).
  googleMapsKey:"",         // Google Maps API key (Places API (New) enabled) to turn on address autocomplete.
  email:"aia.cleaning.services.nsw@gmail.com",                 // add when provided
  address:"19 Green Valley Rd, Green Valley NSW 2168",               // add when provided
@@ -266,7 +266,7 @@ var logo=CONFIG.logoSrc?'<img src="'+CONFIG.logoSrc+'" alt="AIA Cleaning Service
 $("logoSlot").innerHTML=logo;$("aboutLogo").innerHTML=CONFIG.logoSrc?'<img src="'+CONFIG.logoSrc+'" alt="AIA Cleaning Services Pty Ltd logo" style="max-width:340px;width:100%;height:auto">':"";$("logoFoot").innerHTML=logo;$("yr").textContent=new Date().getFullYear();
 var wa="https://wa.me/"+CONFIG.whatsapp+"?text="+encodeURIComponent("Hi AIA Cleaning Services, I'd like a free quote.");
 $("waBtn").href=wa;$("waFab").href=wa;
-if(CONFIG.email){$("cEmail").hidden=false;$("cEmail").textContent=CONFIG.email}
+if(CONFIG.email){$("cEmail").hidden=false;$("cEmail").innerHTML='<a href="mailto:'+CONFIG.email+'" style="color:#fff">'+CONFIG.email+'</a>'}
 if(CONFIG.address){$("cAddr").hidden=false;$("cAddr").textContent=CONFIG.address}
 var sel=$("service");sel.innerHTML='<option value="">Select a service…</option>'+SERVICES.map(function(s){return '<option>'+s[0]+'</option>'}).join("");
 $("cards").innerHTML=SERVICES.map(function(s,i){return '<article class="card"><div class="ill" role="img" aria-label="'+s[0]+' illustration">'+art(i)+'</div><div class="body"><h3>'+s[0]+'</h3><p>'+s[1]+'</p><a class="btn btn-blue btn-sm" href="#contact" data-s="'+i+'">Request a Free Quote</a></div></article>'}).join("");
@@ -292,7 +292,7 @@ $("qf").addEventListener("submit",function(e){
   var msg="Hi AIA Cleaning Services, I'd like a quote.\nName: "+d.name+"\nPhone: "+d.phone+"\nEmail: "+d.email+"\nService: "+d.service+"\nProperty: "+d.propertyType+"\nDate: "+(d.preferredDate||"flexible")+"\nAddress: "+d.address+"\nNotes: "+(d.notes||"-");
   show("warn","<strong>Your enquiry has not been sent yet.</strong> Online submission is not set up yet (the site owner needs to add a notification email in the page settings). Please call <a href=\"tel:"+CONFIG.phoneTel+"\">"+CONFIG.phone+"</a> or <a target=\"_blank\" rel=\"noopener\" href=\"https://wa.me/"+CONFIG.whatsapp+"?text="+encodeURIComponent(msg)+"\">send these details on WhatsApp</a>.");return}
  var b=$("sub");b.disabled=true;b.textContent="Sending…";
- fetch(EP,{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(d)}).then(function(r){if(!r.ok)throw 0;show("ok","<strong>Thank you, "+d.name.split(" ")[0]+".</strong> We have received your enquiry and will contact you soon on "+d.phone+".");$("qf").reset()}).catch(function(){show("bad","<strong>Something went wrong and your enquiry was not sent.</strong> Please try again or call <a href=\"tel:"+CONFIG.phoneTel+"\">"+CONFIG.phone+"</a>.")}).finally(function(){b.disabled=false;b.textContent="Submit Enquiry"});
+ fetch(EP,{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(d)}).then(function(r){return r.json().catch(function(){return {}}).then(function(j){if(!r.ok||j.success===false||j.success==="false")throw new Error(j.message||("HTTP "+r.status));show("ok","<strong>Thank you, "+d.name.split(" ")[0]+".</strong> We have received your enquiry and will contact you soon on "+d.phone+".");$("qf").reset()})}).catch(function(err){var m=err&&err.message?err.message:"";if(/failed to fetch|networkerror|load failed/i.test(m))m="Could not reach the form service. If you opened this page from a file on your computer, upload it to your website and try again.";console.error("Enquiry error:",err);show("bad","<strong>Something went wrong and your enquiry was not sent.</strong> Please try again or call <a href=\"tel:"+CONFIG.phoneTel+"\">"+CONFIG.phone+"</a>."+(m?"<br><small>Reason: "+m.replace(/</g,"&lt;")+"</small>":""))}).finally(function(){b.disabled=false;b.textContent="Submit Enquiry"});
 });
 
 function initPlaces(){
